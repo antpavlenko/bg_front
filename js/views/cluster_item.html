@@ -20,7 +20,7 @@
             <h3>{{item.nameRU}}</h3>
             <p>{{item.nameEN}}</p>
         </div>
-        <div class="card-body" ng-if="_view===undefined">
+        <div class="card-body" ng-if="_action='edit'">
 
             <h5>General</h5>
 
@@ -38,11 +38,11 @@
             <button type="button" class="btn btn-primary col-2" ng-click="save(item)">Save</button>
         </div>
 
-        <div class="card-body" ng-if="_view">
+        <div class="card-body" ng-if="_action='view'">
             <h5>
                 General
             </h5>
-            <table>
+            <table class="table table-hover table-dark">
                 <tbody>
                     <tr>
                         <td>

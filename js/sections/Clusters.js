@@ -8,7 +8,7 @@ mainApp.config(function($routeProvider, $locationProvider) {
             templateUrl : '/js/views/cluster_item.html',
             controller  : 'ClusterItemController'
         })
-        .when("/cls/:id/:view", {
+        .when("/cls/:id/:action", {
             templateUrl : '/js/views/cluster_item.html',
             controller  : 'ClusterItemController'
         });
@@ -36,7 +36,7 @@ mainApp.controller('ClustersController', function($scope, $route, $routeParams, 
 mainApp.controller('ClusterItemController', function($scope, $route, $routeParams, $location, $rootScope, APIResources, ModelService) {
     $rootScope.module = "cls";
 
-    $scope._view = $routeParams.view;
+    $scope._action = $routeParams.action;
 
     $scope.refresh = function(){
         if($routeParams["id"]!==undefined){
