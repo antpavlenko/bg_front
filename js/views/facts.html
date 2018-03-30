@@ -36,9 +36,9 @@
                         <p class="mb-1">{{fact.definition}}</p>
                         <br />
                         <div class="list-group">
-                            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" ng-repeat="dim in fact.dimensions">
+                            <a ng-href="/dim/{{dim.dimension}}/view" class="list-group-item list-group-item-action flex-column align-items-start" ng-repeat="dim in fact.dimensions">
                                 <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1"><a ng-href="/dim/{{dim.dimension}}/view">{{(dimensions._items | filter : {'_id' : dim.dimension})[0].nameRU}}</a></h5>
+                                    <h5 class="mb-1">{{(dimensions._items | filter : {'_id' : dim.dimension})[0].nameRU}}</h5>
                                     <small ng-if="dim.roleNameRU!==undefined" class="text-muted">{{dim.roleNameRU}}</small>
                                 </div>                        
                             </a>
