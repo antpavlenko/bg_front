@@ -103,9 +103,7 @@
                         <h5>Hierarchy Levels</h5>
                     </div>
                     <div class="card-body">
-                        <button type="button" class="btn btn-primary col-4" ng-click="addSubItem(item, 'levels')">Add Level</button>
-                        <br />
-                        <br />
+                        
 
                         <div class="card form-group" ng-repeat="(i_level, level) in item.levels | orderBy : 'level'">
                             <div class="card-header">
@@ -244,6 +242,10 @@
                                 </div>                            
                             </div>
                         </div>
+                        <br />
+                        <br />
+                        <button type="button" class="btn btn-primary col-4" ng-click="addSubItem(item, 'levels')">Add Level</button>
+                        
                     </div>
                 </div>
                 <br />
