@@ -24,8 +24,12 @@ mainApp.controller('FactsController', function($scope, $route, $routeParams, $lo
     };
     
     $scope.deleteItem = function(item){
-        APIResources.facts.delete({"id" : item._id}, item);
-        $scope.refresh();
+        APIResources.facts.delete({"id" : item._id}, item).then(
+            function(){
+                $scope.refresh();
+            }
+        );
+        
     };
 
     $scope.refresh();

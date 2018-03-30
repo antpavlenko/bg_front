@@ -25,8 +25,11 @@ mainApp.controller('DimensionsController', function($scope, $route, $routeParams
     };
     
     $scope.deleteItem = function(item){
-        APIResources.dimensions.delete({"id" : item._id}, item);
-        $scope.refresh();
+        APIResources.dimensions.delete({"id" : item._id}, item).then(
+            function(){
+                $scope.refresh();
+            }
+        );        
     };
 
     $scope.refresh();

@@ -25,8 +25,12 @@ mainApp.controller('ClustersController', function($scope, $route, $routeParams, 
     };
     
     $scope.deleteItem = function(item){
-        APIResources.clusters.delete({"id" : item._id}, item);
-        $scope.refresh();
+        APIResources.clusters.delete({"id" : item._id}, item).then(
+            function(){
+                $scope.refresh();
+            }
+        );
+        
     };
 
     $scope.refresh();
