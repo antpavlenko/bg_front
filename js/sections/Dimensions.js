@@ -50,7 +50,7 @@ mainApp.controller('DimensionItemController', function($scope, $route, $routePar
                         var allFacts = APIResources.facts.query();
                         allFacts.$promise.then(
                             function(){
-                                $scope.facts = allFacts._items.filter(function(fact){return fact.dimensions.filter(function(dim){return dim.dimension===$scope.item_id;}).length>0;});
+                                $scope.facts = allFacts._items.filter(function(fact){return fact.dimensions.filter(function(dim){return dim.dimension===$scope.item._id;}).length>0;});
                             }
                         );
                     }                    
