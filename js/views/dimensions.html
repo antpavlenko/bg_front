@@ -37,8 +37,8 @@
     
     <div class="container">
         <span ng-repeat="(ns, ns_dimensions) in dimensions._items | groupBy : 'namespace'">
-            <h2 ng-if="ns!==undefined && ns!==''">{{ns}}</h2>
-            <h2>Common</h2>
+            <h2 ng-if="ns!=='undefined'">{{ns}}</h2>
+            <h2 ng-if="ns==='undefined'">Common</h2>
 
             <div ng-repeat="dimension in ns_dimensions | orderBy : ['cluster', 'nameRU']" class="row card form-group">
                 <div class="card-header">
