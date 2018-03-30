@@ -67,7 +67,11 @@ mainApp.controller('FactItemController', function($scope, $route, $routeParams, 
         }
         
         $scope.refresh();
-        $location.path("/fcts/" + id + "/view");
+        if(id!==undefined){
+            $location.path("/fct/" + id + "/view");
+        }else{
+            $location.path("/fcts");
+        }        
     };
 
     $scope.addSubItem = function(item, subItemsName){

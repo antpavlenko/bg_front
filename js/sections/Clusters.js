@@ -66,7 +66,11 @@ mainApp.controller('ClusterItemController', function($scope, $route, $routeParam
         }
         
         $scope.refresh();
-        $location.path("/clss/" + id + "/view");
+        if(id!==undefined){
+            $location.path("/cls/" + id + "/view");
+        }else{
+            $location.path("/clss");
+        }   
     };
 
     $scope.refresh();

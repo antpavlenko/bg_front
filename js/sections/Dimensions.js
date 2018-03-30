@@ -80,7 +80,11 @@ mainApp.controller('DimensionItemController', function($scope, $route, $routePar
         }
         
         $scope.refresh();
-        $location.path("/dims/" + id + "/view");
+        if(id!==undefined){
+            $location.path("/dim/" + id + "/view");
+        }else{
+            $location.path("/dims");
+        }   
     };
 
     $scope.addSubItem = function(item, subItemsName){
