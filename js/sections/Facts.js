@@ -40,6 +40,9 @@ mainApp.controller('FactItemController', function($scope, $route, $routeParams, 
     $scope.refresh = function(){
         if($routeParams["id"]!==undefined){
             $scope.item = APIResources.facts.get({"id" : $routeParams["id"]});
+            if($routeParams.action=='view'){
+                $scope.dimensions = APIResources.dimensions.query();
+            }
         }else{
             $scope.item = {};
         }

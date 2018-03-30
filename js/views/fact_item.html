@@ -17,7 +17,7 @@
     
     <div class="card form-group">
         <div class="card-header">
-            <h3>{{item.nameRU}}</h3>
+            <h4>{{item.nameRU}}</h4>
             <p>{{item.nameEN}}</p>
         </div>
         <div class="card-body" ng-if="_action=='edit'">
@@ -96,6 +96,79 @@
                 <br />
 
                 <button type="button" class="btn btn-primary col-2" ng-click="save(item)">Save</button>
+        </div>
+
+        <div class="card-body" ng-if="_action=='view'">
+            <h5>
+                General and Stratification
+            </h5>
+            <table class="table table-hover">
+                <tbody>
+                        <tr ng-if="item.namespace!==undefined && item.namespace!=''">
+                            <td>
+                                <h6>Namespace</h6>
+                            </td>
+                            <td>
+                                {{item.namespace}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h6>Fact Type</h6>
+                            </td>
+                            <td>
+                                {{item.type}}
+                            </td>
+                        </tr>                    
+                        <tr>
+                            <td>
+                                <h6>Fact Name (RU)</h6>
+                            </td>
+                            <td>
+                                {{item.nameRU}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h6>Fact Name (EN)</h6>
+                            </td>
+                            <td>
+                                {{item.nameEN}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h6>Definition</h6>
+                            </td>
+                            <td>
+                                <pre>{{item.definition}}</pre>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            <br />
+            <h5>
+                Dimensions
+            </h5>
+            <table class="table table-hover">
+                <thead>
+                    <th>Dimension</th>
+                    <th>Role</th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="dim in item.dimensions">
+                        <td>
+                            <a ng-repeat="dm in dimensions._items" ng-if="dm._id==dim.dimension" ng-href="/dim/{{dm._id}}/view">{{dm.nameRU}}</a>
+                        </td>
+                        <td>
+                            {{dim.roleNameRU}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <p class="mb-1"><a class="btn btn-info col-2" ng-href="/ld/fct/{{item._id}}">Logical Diagram</a></p>
+            <p class="mb-1"><a class="btn btn-primary col-2" ng-href="/fct/{{item._id}}/edit">Edit</a></p>
         </div>
     </div>
 </div>
