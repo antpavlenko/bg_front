@@ -312,43 +312,44 @@
             <h5>
                 Levels
             </h5>
-            <table class="table table-hover">
-                <thead>
-                    <th>#</th>
-                    <th>Type</th>
-                    <th>Name (RU)</th>
-                    <th>Name (EN)</th>
-                    <th>Definition</th>
-                    <th>Scenarios</th>
-                    <th>Typizations</th>
-                </thead>
-                <tbody>
-                   <tr ng-repeat="lvl in item.levels | orderBy : 'level'">
-                        <td>
-                            {{lvl.level}}
-                        </td>
-                        <td>
-                            {{lvl.historyType}}
-                        </td>
-                        <td>
-                            {{lvl.levelNameRU}}
-                        </td>
-                        <td>
-                            {{lvl.levelNameEN}}
-                        </td>
-                        <td>
-                            <pre>{{lvl.definition}}</pre>
-                        </td>
-                        <td>
-                            <p class="mb-1" ng-repeat="scenario in lvl.scenarios | orderBy : 'scenarioId'">{{scenario.scenarioNm}}</p>
-                        </td>
-                        <td>
-                            <p class="mb-1" ng-repeat="type in lvl.typizations"><span ng-if="type.namespace!==undefined && type.namespace!==''">[{{type.namespace}}]</span> - {{type.nameRU}}</p>
-                        </td>
-                   </tr>
-                </tbody>
-            </table>
-
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <th>#</th>
+                        <th>Type</th>
+                        <th>Name (RU)</th>
+                        <th>Name (EN)</th>
+                        <th>Definition</th>
+                        <th>Scenarios</th>
+                        <th>Typizations</th>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="lvl in item.levels | orderBy : 'level'">
+                            <td>
+                                {{lvl.level}}
+                            </td>
+                            <td>
+                                {{lvl.historyType}}
+                            </td>
+                            <td>
+                                {{lvl.levelNameRU}}
+                            </td>
+                            <td>
+                                {{lvl.levelNameEN}}
+                            </td>
+                            <td>
+                                <pre>{{lvl.definition}}</pre>
+                            </td>
+                            <td>
+                                <p class="mb-1" ng-repeat="scenario in lvl.scenarios | orderBy : 'scenarioId'">{{scenario.scenarioNm}}</p>
+                            </td>
+                            <td>
+                                <p class="mb-1" ng-repeat="type in lvl.typizations"><span ng-if="type.namespace!==undefined && type.namespace!==''">[{{type.namespace}}]</span> - {{type.nameRU}}</p>
+                            </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
             <br />
 
             <h5>
