@@ -14,6 +14,9 @@ mainApp.config(function($routeProvider, $locationProvider) {
 mainApp.controller('FactsLogicalDiagramController', function($scope, $route, $routeParams, $location, $rootScope, APIResources, ModelService) {
     $rootScope.module = "ld";
 
+    $scope.obj = "fct";
+    $scope.id = $routeParams.id;
+
     $scope.refresh = function(){
         $scope.createFactDiagram($routeParams.id);
     };
@@ -180,6 +183,7 @@ mainApp.controller('FactsLogicalDiagramController', function($scope, $route, $ro
 
                 _.each(relations, function(r) { graph.addCell(r); });
                 
+                /*
                 paper.on('cell:pointerdown', 
                     function(cellView, evt, x, y) { 
                         if(cellView.model.attributes.entityType=="Dimension"){
@@ -187,6 +191,7 @@ mainApp.controller('FactsLogicalDiagramController', function($scope, $route, $ro
                         } 
                     }
                 );
+                */
             }
         );
     };
@@ -197,6 +202,9 @@ mainApp.controller('FactsLogicalDiagramController', function($scope, $route, $ro
 
 mainApp.controller('DimensionsLogicalDiagramController', function($scope, $route, $routeParams, $location, $rootScope, APIResources, ModelService) {
     $rootScope.module = "ld";
+
+    $scope.obj = "dim";
+    $scope.id = $routeParams.id;
 
     $scope.refresh = function(){
         $scope.createDimensionDiagram($routeParams.id);

@@ -4,6 +4,14 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a ng-href="/">Home</a></li>
+                    <li class="breadcrumb-item">
+                        <a ng-if="obj=='dim'" ng-href="/dims">Dimension</a>
+                        <a ng-if="obj=='fct'" ng-href="/fcts">Fact</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a ng-if="obj=='dim'" ng-href="/dim/{{id}}/view">Dimension {{id}}</a>
+                        <a ng-if="obj=='fct'" ng-href="/fct/{{id}}/view">Fact {{id}}</a>
+                    </li>
                     <li class="breadcrumb-item active" aria-current="page">Diagram</li>
                 </ol>
             </nav>
