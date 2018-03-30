@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a ng-href="/">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Cluster</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row">
+        <h1>Clusters</h1>
+    </div>
+    
+    <div class="row">
+        <a class="btn btn-primary col-4" ng-href="/cls/new">Add a Cluster</a>
+    </div>
+
+    <br />
+    
+    <div class="container">
+
+        <div ng-repeat="cluster in clusters._items" class="row card form-group">
+            <div class="card-header">
+                <h3>{{cluster.nameRU}}</h3>
+                <p>{{cluster.nameEN}}</p>
+            </div>
+            <div class="card-body">
+                
+                <p class="mb-1"><a class="btn btn-primary col-2" ng-href="/cls/{{cluster._id}}">Edit</a></p>
+                <p class="mb-1"><button type="button" class="btn btn-danger col-2" ng-click="deleteItem(cluster)">Delete</button></p>
+            </div>
+        </div>
+
+    </div>
+
+    <!--
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <li ng-if="parseInt(page) > 1" class="page-item"><a class="page-link" ng-href="/dims/{{parseInt(page) - 1}}">Previous</a></li>
+            <li ng-repeat="pg in pageArray" class="page-item"><a class="page-link" ng-href="/dims/{{pg}}">{{pg}}</a></li>
+            <li ng-if="parseInt(page)!==parseInt(lastPage)" class="page-item"><a class="page-link" ng-href="/dims/{{parseInt(page) + 1}}">Next</a></li>
+        </ul>
+    </nav>
+    -->
+</div>

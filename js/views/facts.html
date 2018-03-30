@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a ng-href="/">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Fact</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row">
+        <h1>Facts</h1>
+    </div>
+
+    <div class="row">
+        <a class="btn btn-primary col-4" ng-href="/fct/new">Add a Fact</a>
+    </div>
+
+    <br />
+    
+    <div class="container">
+
+        <div ng-repeat="fact in facts._items | orderBy : 'nameRU'" class="row card form-group">
+            <div class="card-header">
+                <h3>[{{fact.type}}] {{fact.nameRU}}</h3>
+                <p>{{fact.nameEN}}</p>
+            </div>
+            <div class="card-body">
+                <p class="mb-1">{{fact.definition}}</p>
+                <br />
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" ng-repeat="dim in fact.dimensions">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{(dimensions._items | filter : {'_id' : dim.dimension})[0].nameRU}}</h5>
+                            <small ng-if="dim.roleNameRU!==undefined" class="text-muted">{{dim.roleNameRU}}</small>
+                        </div>                        
+                    </a>
+                </div>
+
+                <br />
+                <p class="mb-1"><a class="btn btn-info col-2" ng-href="/ld/fct/{{fact._id}}">Logical Diagram</a></p>
+                <p class="mb-1"><a class="btn btn-primary col-2" ng-href="/fct/{{fact._id}}">Edit</a></p>
+                <p class="mb-1"><button type="button" class="btn btn-danger col-2" ng-click="deleteItem(fact)">Delete</button></p>
+            </div>
+        </div>
+
+    </div>
+
+</div>

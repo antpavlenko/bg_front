@@ -1,0 +1,225 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a ng-href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a ng-href="/dims">Dimension</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Dimension - <span ng-if="item._id===undefined">New</span>{{item._id}}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row">
+        <h1>Dimension - <span ng-if="item._id===undefined">New</span>{{item._id}}</h1>
+    </div>
+    
+    <div class="card form-group">
+        <div class="card-header">
+            <h3>{{item.nameRU}}</h3>
+            <p>{{item.nameEN}}</p>
+        </div>
+        <div class="card-body">
+
+                <h5>General</h5>
+
+                <div class="form-group">
+                    <label for="nameRU">Cluster</label>
+                    <select class="form-control" id="cluster" ng-model="item.cluster">
+                        <option ng-repeat="cluster in clusters._items" ng-value="cluster._id">{{cluster.nameRU}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="nameRU">Dimension Name (RU)</label>
+                    <input type="text" class="form-control" id="nameRU" placeholder="Dimension Name (RU)" ng-model="item.nameRU">
+                </div>
+                <div class="form-group">
+                    <label for="nameEN">Dimension Name (EN)</label>
+                    <input type="text" class="form-control" id="nameEN" placeholder="Dimension Name (EN)" ng-model="item.nameEN">
+                </div>
+                <div class="form-group">
+                    <label for="definition">Definition</label>
+                    <textarea class="form-control" id="definition" ng-model="item.definition" rows="3"></textarea>
+                </div>
+
+                <div class="card form-group">
+                    <div class="card-header">
+                        <h5>Dimension Labels</h5>
+                    </div>
+                    <div class="card-body">
+                        <button type="button" class="btn btn-primary col-4" ng-click="addSubItem(item, 'labels')">Add Label</button>
+                        <br />
+                        <br />
+                        <table class="table">
+                            <tbody>
+                                <tr ng-repeat="(i_label, label) in item.labels">
+                                    <td>
+                                        <div class="form-group">
+                                            <select class="form-control" id="labelType" ng-model="label.labelType">
+                                                <option ng-repeat="ns in namespaceList" ng-value="ns.nameRU">{{ns.nameRU}}</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="label" placeholder="Label" ng-model="label.label">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger" ng-click="clear(label, item.labels)">X</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                </div>
+                <br />
+
+                <div class="card form-group">
+                    <div class="card-header">
+                        <h5>Hierarchy Levels</h5>
+                    </div>
+                    <div class="card-body">
+                        <button type="button" class="btn btn-primary col-4" ng-click="addSubItem(item, 'levels')">Add Level</button>
+                        <br />
+                        <br />
+
+                        <div class="card form-group" ng-repeat="(i_level, level) in item.levels | orderBy : 'level'">
+                            <div class="card-header">
+                                <h5>{{level.level}} - {{level.levelNameRU}}</h5>
+                                
+                                <button type="button" class="btn btn-danger col-4" ng-click="clear(level, item.levels)">Delete</button>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="level">Level #</label>
+                                    <input type="number" class="form-control" id="level" placeholder="Level #" ng-model="level.level">
+                                </div>
+                                <div class="form-group">
+                                    <label for="levelNameRU">Level Name (RU)</label>
+                                    <input type="text" class="form-control" id="levelNameRU" placeholder="Level Name (RU)" ng-model="level.levelNameRU">
+                                </div>
+                                <div class="form-group">
+                                    <label for="levelNameEN">Level Name (EN)</label>
+                                    <input type="text" class="form-control" id="levelNameRU" placeholder="Level Name (EN)" ng-model="level.levelNameEN">
+                                </div>
+                                <div class="form-group">
+                                    <label for="definition">Definition</label>
+                                    <textarea class="form-control" id="definition" ng-model="level.definition" rows="3"></textarea>
+                                </div>
+                                <div class="card form-group">
+                                    <div class="card-header">
+                                        <h5>Level Labels</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <button type="button" class="btn btn-primary col-4" ng-click="addSubItem(level, 'labels')">Add Label</button>
+                                        <br />
+                                        <br />
+                                        <table class="table">
+                                            <tbody>
+                                                <tr ng-repeat="(i_label, label) in level.labels">
+                                                    <td>
+                                                        <div class="form-group">
+                                                            <select class="form-control" id="labelType" ng-model="label.labelType">
+                                                                <option ng-repeat="ns in namespaceList" ng-value="ns.nameRU">{{ns.nameRU}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" id="label" placeholder="Label" ng-model="label.label">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-danger" ng-click="clear(label, level.labels)">X</button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="card form-group">
+                                    <div class="card-header">
+                                        <h5>Scenarios</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <button type="button" class="btn btn-primary col-4" ng-click="addSubItem(level, 'scenarios')">Add Scenario</button>
+                                        <br />
+                                        <br />
+                                        <table class="table">
+                                            <tbody>
+                                                <tr ng-repeat="(i_scenario, scenario) in level.scenarios | orderBy : 'scenarioId'">
+                                                    <td>
+                                                        <div class="form-group">
+                                                            <input type="number" class="form-control" id="scenarioId" placeholder="Id" ng-model="scenario.scenarioId">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" id="scenarioName" placeholder="Name" ng-model="scenario.scenarioName">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-danger" ng-click="clear(scenario, level.scenarios)">X</button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>                                    
+                                </div>
+                                <br />
+                                <div class="card form-group">
+                                    <div class="card-header">
+                                        <h5>Typizations</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <button type="button" class="btn btn-primary col-4" ng-click="addSubItem(level, 'typizations')">Add Typization</button>
+                                        <br />
+                                        <br />
+                                        <table class="table">
+                                            <tbody>
+                                                <tr ng-repeat="(i_type, type) in level.typizations">
+                                                    <td>
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" id="nameRU" placeholder="Name (RU)" ng-model="type.nameRU">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" id="nameEN" placeholder="Name (EN)" ng-model="type.nameEN">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="form-group">
+                                                            <textarea class="form-control" id="definition" ng-model="type.definition" rows="2"></textarea>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="form-group">
+                                                            <select class="form-control" id="namespace" ng-model="type.namespace">
+                                                                <option ng-repeat="ns in namespaceList" ng-value="ns.nameRU">{{ns.nameRU}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-danger" ng-click="clear(type, level.typizations)">X</button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>                                    
+                                </div>                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+                <button type="button" class="btn btn-primary col-2" ng-click="save(item)">Save</button>
+        </div>
+    </div>
+</div>

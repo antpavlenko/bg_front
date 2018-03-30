@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="mainApp">
+    <head>
+		<base href="/">
+
+        <title>Business Glossary</title>
+        <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="X-UA-Compatible" content="IE=11" /> 
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/joint.min.css" />
+
+        <script type="text/javascript"
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-resource.min.js"></script>
+        <script type="text/javascript" src="js/angular-eve-resource.js"></script>
+
+        <script type="text/javascript" src="js/lodash.js"></script>
+        <script type="text/javascript" src="js/backbone.js"></script>
+        <script type="text/javascript" src="js/joint.min.js"></script>
+        
+        <script type="text/javascript" src="js/classes/APIManager.js"></script>
+        <script type="text/javascript" src="js/apps/mainApp.js"></script>
+        <script type="text/javascript" src="js/directives/elem-ready.js"></script>
+        <script type="text/javascript" src="js/sections/Clusters.js"></script>
+        <script type="text/javascript" src="js/sections/Dimensions.js"></script>
+        <script type="text/javascript" src="js/sections/Facts.js"></script>
+        <script type="text/javascript" src="js/sections/LogicalDiagrams.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">Business Glossary</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+              
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item" ng-class="{'active' : module==='home'}">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <li class="nav-item" ng-class="{'active' : module==='cls'}">
+                            <a class="nav-link" href="/clss">Dimension Clusters</a>
+                        </li>
+                        <li class="nav-item" ng-class="{'active' : module==='dim'}">
+                            <a class="nav-link" href="/dims">Dimensions</a>
+                        </li>
+                        <li class="nav-item" ng-class="{'active' : module==='fct'}">
+                            <a class="nav-link" href="/fcts">Facts</a>
+                        </li>
+                </div>
+            </nav>
+
+            <ng-view></ng-view>
+        </div>
+    </body>
+</html>

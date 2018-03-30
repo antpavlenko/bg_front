@@ -1,0 +1,91 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a ng-href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a ng-href="/fcts">Fact</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Fact - <span ng-if="item._id===undefined">New</span>{{item._id}}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row">
+        <h1>Fact - <span ng-if="item._id===undefined">New</span>{{item._id}}</h1>
+    </div>
+    
+    <div class="card form-group">
+        <div class="card-header">
+            <h3>{{item.nameRU}}</h3>
+            <p>{{item.nameEN}}</p>
+        </div>
+        <div class="card-body">
+
+                <h5>General</h5>
+
+                <div class="form-group">
+                    <label for="nameRU">Fact Name (RU)</label>
+                    <input type="text" class="form-control" id="nameRU" placeholder="Fact Name (RU)" ng-model="item.nameRU">
+                </div>
+                <div class="form-group">
+                    <label for="nameEN">Fact Name (EN)</label>
+                    <input type="text" class="form-control" id="nameEN" placeholder="Fact Name (EN)" ng-model="item.nameEN">
+                </div>
+                <div class="form-group">
+                    <label for="definition">Definition</label>
+                    <textarea class="form-control" id="definition" ng-model="item.definition" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="type">Fact Type</label>
+                    <select class="form-control" id="type" ng-model="item.type">
+                        <option ng-repeat="ft in factTypeList" ng-value="ft.nameRU">{{ft.nameRU}}</option>
+                    </select>
+                </div>
+
+                <div class="card form-group">
+                    <div class="card-header">
+                        <h5>Dimensions</h5>
+                    </div>
+                    <div class="card-body">
+                        <button type="button" class="btn btn-primary col-4" ng-click="addSubItem(item, 'dimensions')">Add Dimension</button>
+                        <br />
+                        <br />
+                        <table class="table">
+                            <tbody>
+                                <tr ng-repeat="dim in item.dimensions">                                    
+                                    <td>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="roleNameRU" placeholder="Role Name (RU)" ng-model="dim.roleNameRU">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="roleNameEN" placeholder="Role Name (EN)" ng-model="dim.roleNameEN">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <select class="form-control" id="type" ng-model="dim.dimension">
+                                                <option ng-repeat="dimension in dimensions._items" ng-value="dimension._id">{{dimension.nameRU}}</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger" ng-click="clearRole(dim)">No role</button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger" ng-click="clear(dim, item.dimensions)">X</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                </div>
+                <br />
+
+                <button type="button" class="btn btn-primary col-2" ng-click="save(item)">Save</button>
+        </div>
+    </div>
+</div>
