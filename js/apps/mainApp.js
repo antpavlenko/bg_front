@@ -27,6 +27,7 @@ var mainApp =
 	mainApp.run(function($rootScope, $timeout, $location, $resource) {
         $rootScope.namespaceList = [{"nameRU" : "Лотереи"}, {"nameRU" : "Букмекер"}];
         $rootScope.factTypeList = [{"nameRU" : "Транзакционный"}, {"nameRU" : "Период"}, {"nameRU" : "Момент"}];
+        $rootScope.dimensionHistoryTypeList = [{"nameRU" : "НСИ (без бизнес-истории)"}, {"nameRU" : "Мастер-данные"}, {"nameRU" : "НСИ"}];
     });
 
     mainApp.service('APIResources', function(eveResource){

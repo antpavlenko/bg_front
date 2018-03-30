@@ -23,7 +23,7 @@
         </div>
         <div class="card-body" ng-if="_action=='edit'">
 
-                <h5>General</h5>
+                <h5>Stratification</h5>
 
                 <div class="form-group">
                     <label for="nameRU">Cluster</label>
@@ -40,6 +40,8 @@
                     </select>
                 </div>
 
+                <h5>General</h5>
+
                 <div class="form-group">
                     <label for="nameRU">Dimension Name (RU)</label>
                     <input type="text" class="form-control" id="nameRU" placeholder="Dimension Name (RU)" ng-model="item.nameRU">
@@ -52,6 +54,14 @@
                     <label for="definition">Definition</label>
                     <textarea class="form-control" id="definition" ng-model="item.definition" rows="3"></textarea>
                 </div>
+                <div class="form-group">
+                    <label for="nameRU">History Type</label>
+                    <select class="form-control" id="history" ng-model="item.historyType">
+                        <option ng-repeat="dt in dimensionHistoryTypeList" ng-value="dt.nameRU">{{dt.nameRU}}</option>
+                        <option value=""></option>
+                    </select>
+                </div>
+
 
                 <div class="card form-group">
                     <div class="card-header">
@@ -119,6 +129,13 @@
                                 <div class="form-group">
                                     <label for="definition">Definition</label>
                                     <textarea class="form-control" id="definition" ng-model="level.definition" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nameRU">History Type</label>
+                                    <select class="form-control" id="history" ng-model="level.historyType">
+                                        <option ng-repeat="dt in dimensionHistoryTypeList" ng-value="dt.nameRU">{{dt.nameRU}}</option>
+                                        <option value=""></option>
+                                    </select>
                                 </div>
                                 <div class="card form-group">
                                     <div class="card-header">
@@ -236,7 +253,7 @@
 
         <div class="card-body" ng-if="_action=='view'">
             <h5>
-                General
+                General and Stratification
             </h5>
             <table class="table table-hover">
                 <tbody>
@@ -258,12 +275,12 @@
                     </tr>
                     <tr>
                         <td>
-                            <h6>Definition</h6>
+                            <h6>History Type</h6>
                         </td>
                         <td>
-                            <pre>{{item.definition}}</pre>
+                            {{item.historyType}}
                         </td>
-                    </tr>
+                    </tr>                    
                     <tr>
                         <td>
                             <h6>Dimension Name (RU)</h6>
@@ -280,6 +297,14 @@
                             {{item.nameEN}}
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+                            <h6>Definition</h6>
+                        </td>
+                        <td>
+                            <pre>{{item.definition}}</pre>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <br />
@@ -289,6 +314,7 @@
             <table class="table table-hover">
                 <thead>
                     <th>#</th>
+                    <th>Type</th>
                     <th>Name (RU)</th>
                     <th>Name (EN)</th>
                     <th>Definition</th>
@@ -299,6 +325,9 @@
                    <tr ng-repeat="lvl in item.levels | orderBy : 'level'">
                         <td>
                             {{lvl.level}}
+                        </td>
+                        <td>
+                            {{lvl.historyType}}
                         </td>
                         <td>
                             {{lvl.levelNameRU}}
