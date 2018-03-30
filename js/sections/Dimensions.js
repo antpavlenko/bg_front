@@ -25,7 +25,7 @@ mainApp.controller('DimensionsController', function($scope, $route, $routeParams
     };
     
     $scope.deleteItem = function(item){
-        APIResources.dimensions.delete({"id" : item._id}, item).then(
+        APIResources.dimensions.delete({"id" : item._id}, item).$promise.then(
             function(){
                 $scope.refresh();
             }
@@ -73,18 +73,26 @@ mainApp.controller('DimensionItemController', function($scope, $route, $routePar
         var id = item._id;
         item = ModelService.cleanItem(item);
 
+        var promise;
+
         if($routeParams.id!==undefined){
-            APIResources.dimensions.update({"id" : id}, item);
+            promise = APIResources.dimensions.update({"id" : id}, item).$promise;
         }else{
-            APIResources.dimensions.save({}, item);
+            promise = APIResources.dimensions.save({}, item).$promise;
         }
         
-        $scope.refresh();
-        if(id!==undefined){
-            $location.path("/dim/" + id + "/view");
-        }else{
-            $location.path("/dims");
-        }   
+        promise.then(
+            function(){
+                $scope.refresh();
+                if(id!==undefined){
+                    $location.path("/dim/" + id + "/view");
+                }else{
+                    $location.path("/dims");
+                } 
+            }
+        );
+
+          
     };
 
     $scope.addSubItem = function(item, subItemsName){

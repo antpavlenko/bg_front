@@ -46,7 +46,7 @@ mainApp.controller('ClusterItemController', function($scope, $route, $routeParam
         if($routeParams["id"]!==undefined){
             $scope.item = APIResources.clusters.get({"id" : $routeParams["id"]});
             if($scope._action=='view'){
-                $scope.dimensions = APIResources.dimensions.query();
+                $scope.dimensions = APIResources.dimensions.$promise.query();
             }
         }else{
             $scope.item = {};
@@ -59,18 +59,24 @@ mainApp.controller('ClusterItemController', function($scope, $route, $routeParam
 
         item = ModelService.cleanItem(item);
 
+        var promise;
+
         if($routeParams.id!==undefined){
-            APIResources.clusters.update({"id" : id}, item);
+            promise = APIResources.clusters.update({"id" : id}, item).$promise;
         }else{
-            APIResources.clusters.save({}, item);
+            promise = APIResources.clusters.save({}, item).$promise;
         }
         
-        $scope.refresh();
-        if(id!==undefined){
-            $location.path("/cls/" + id + "/view");
-        }else{
-            $location.path("/clss");
-        }   
+        promise.then(
+            function(){
+                $scope.refresh();
+                if(id!==undefined){
+                    $location.path("/cls/" + id + "/view");
+                }else{
+                    $location.path("/clss");
+                }
+            }
+        );
     };
 
     $scope.refresh();

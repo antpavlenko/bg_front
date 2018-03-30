@@ -24,7 +24,7 @@ mainApp.controller('FactsController', function($scope, $route, $routeParams, $lo
     };
     
     $scope.deleteItem = function(item){
-        APIResources.facts.delete({"id" : item._id}, item).then(
+        APIResources.facts.delete({"id" : item._id}, item).$promise.then(
             function(){
                 $scope.refresh();
             }
@@ -60,18 +60,25 @@ mainApp.controller('FactItemController', function($scope, $route, $routeParams, 
 
         item = ModelService.cleanItem(item);
 
+        var promise;
+
         if($routeParams.id!==undefined){
-            APIResources.facts.update({"id" : id}, item);
+            promise = APIResources.facts.update({"id" : id}, item).$promise;
         }else{
-            APIResources.facts.save({}, item);
+            promise = APIResources.facts.save({}, item).$promise;
         }
         
-        $scope.refresh();
-        if(id!==undefined){
-            $location.path("/fct/" + id + "/view");
-        }else{
-            $location.path("/fcts");
-        }        
+        promise.then(
+            function(){
+                $scope.refresh();
+                if(id!==undefined){
+                    $location.path("/fct/" + id + "/view");
+                }else{
+                    $location.path("/fcts");
+                }   
+            }
+        );
+             
     };
 
     $scope.addSubItem = function(item, subItemsName){
