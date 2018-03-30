@@ -49,6 +49,7 @@ mainApp.controller('FactItemController', function($scope, $route, $routeParams, 
             }
         }else{
             $scope.item = {};
+            $scope._action = 'edit';
         }
 
         $scope.dimensions = APIResources.dimensions.query();        

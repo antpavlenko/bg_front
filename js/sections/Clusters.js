@@ -50,6 +50,7 @@ mainApp.controller('ClusterItemController', function($scope, $route, $routeParam
             }
         }else{
             $scope.item = {};
+            $scope._action = 'edit';
         }        
     };
 

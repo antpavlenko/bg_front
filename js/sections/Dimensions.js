@@ -63,6 +63,7 @@ mainApp.controller('DimensionItemController', function($scope, $route, $routePar
             
         }else{
             $scope.item = {};
+            $scope._action = 'edit';
         }
         
         $scope.clusters = APIResources.clusters.query();
