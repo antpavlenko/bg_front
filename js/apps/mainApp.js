@@ -4,7 +4,7 @@ var mainApp =
 (function (A) {
   
 
-	var mainApp = angular.module('mainApp', ['ngRoute', 'com.dailymotion.ngEveResource']);
+	var mainApp = angular.module('mainApp', ['ngRoute', 'com.dailymotion.ngEveResource', 'angular.filter']);
 
     mainApp.config(['$resourceProvider', function($resourceProvider){
         $resourceProvider.defaults.stripTrailingSlashes = false;
