@@ -40,6 +40,15 @@ mainApp.controller('DimensionItemController', function($scope, $route, $routePar
     $scope.refresh = function(){
         if($routeParams["id"]!==undefined){
             $scope.item = APIResources.dimensions.get({"id" : $routeParams["id"]});
+
+            $scope.item.$promise.then(
+                function(){
+                    if($routeParams.action=='view' && $scope.item.cluster!==undefined){
+                        $scope.cluster = APIResources.cluster.get({"id" : $scope.item.cluster});
+                    }
+                }
+            );
+            
         }else{
             $scope.item = {};
         }

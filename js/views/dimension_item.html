@@ -17,7 +17,8 @@
     
     <div class="card form-group">
         <div class="card-header">
-            <h3>{{item.nameRU}}</h3>
+            <h3 ng-if="item.namespace!==undefined && item.namespace!==''">{{item.namespace}}</h3>
+            <h4>{{item.nameRU}}</h4>
             <p>{{item.nameEN}}</p>
         </div>
         <div class="card-body" ng-if="_action=='edit'">
@@ -241,6 +242,30 @@
                 <tbody>
                     <tr>
                         <td>
+                            <h6>Cluster</h6>
+                        </td>
+                        <td>
+                            <a ng-href="/cls/{{item.cluster}}/view">{{cluster.nameRU}}</a>
+                        </td>
+                    </tr>
+                    <tr ng-if="item.namespace!==undefined && item.namespace!=''">
+                        <td>
+                            <h6>Namespace</h6>
+                        </td>
+                        <td>
+                            {{item.namespace}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h6>Definition</h6>
+                        </td>
+                        <td>
+                            <pre>{{item.definition}}</pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <h6>Dimension Name (RU)</h6>
                         </td>
                         <td>
@@ -257,8 +282,45 @@
                     </tr>
                 </tbody>
             </table>
+            <h5>
+                Levels
+            </h5>
+            <table class="table table-hover">
+                <thead>
+                    <th>#</th>
+                    <th>Name (RU)</th>
+                    <th>Name (EN)</th>
+                    <th>Definition</th>
+                    <th>Scenarios</th>
+                    <th>Typizations</th>
+                </thead>
+                <tbody>
+                   <tr ng-repeat="lvl in item.levels | orderBy : 'level'">
+                        <td>
+                            {{lvl.level}}
+                        </td>
+                        <td>
+                            {{lvl.levelNameRU}}
+                        </td>
+                        <td>
+                            {{lvl.levelNameEN}}
+                        </td>
+                        <td>
+                            <pre>{{lvl.definition}}</pre>
+                        </td>
+                        <td>
+                            <p class="mb-1" ng-repeat="scenario in lvl.scenarios | orderBy : 'scenarioId'">{{scenario.scenarioNm}}</p>
+                        </td>
+                        <td>
+                            <p class="mb-1" ng-repeat="type in lvl.typizations"><span ng-if="type.namespace!==undefined && type.namespace!==''">[{{type.namespace}}]</span> - {{type.nameRU}}</p>
+                        </td>
+                   </tr>
+                </tbody>
+            </table>
             
             <hr />
+
+            <p class="mb-1"><a class="btn btn-info col-2" ng-href="/ld/dim/{{item._id}}">Logical Diagram</a></p>
             <p class="mb-1"><a class="btn btn-primary col-2" ng-href="/dim/{{item._id}}/edit">Edit</a></p>
         </div>
     </div>

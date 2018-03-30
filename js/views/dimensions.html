@@ -39,7 +39,8 @@
 
         <div ng-repeat="dimension in dimensions._items | orderBy : 'cluster'" class="row card form-group">
             <div class="card-header">
-                <h3><span ng-if="dimension.cluster!==undefined">[{{(clusters._items | filter : {'_id' : dimension.cluster})[0].nameRU}}] / </span>{{dimension.nameRU}}</h3>
+                <h3 ng-if="dimension.namespace!==undefined && dimension.namespace!==''">{{dimension.namespace}}</h3>
+                <h4><span ng-if="dimension.cluster!==undefined">[{{(clusters._items | filter : {'_id' : dimension.cluster})[0].nameRU}}] / </span>{{dimension.nameRU}}</h4>
                 <p><span ng-if="dimension.cluster!==undefined">[{{(clusters._items | filter : {'_id' : dimension.cluster})[0].nameEN}}] / </span>{{dimension.nameEN}}</p>
             </div>
             <div class="card-body">
