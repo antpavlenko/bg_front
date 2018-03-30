@@ -44,11 +44,19 @@ mainApp.controller('DimensionItemController', function($scope, $route, $routePar
             $scope.item.$promise.then(
                 function(){
                     if($routeParams.action=='view' && $scope.item.cluster!==undefined){
-                        $scope.cluster = APIResources.cluster.get({"id" : $scope.item.cluster});
-                    }
+                        $scope.cluster = APIResources.clusters.get({"id" : $scope.item.cluster});
+                    }                    
                 }
             );
             
+            if($routeParams.action=='view'){
+                var allFacts = APIResources.facts.query();
+                allFacts.$promise.then(
+                    function(){
+                        $scope.facts = allFacts._items.filter(function(fact){return fact.dimensions.filter(function(dim){return dim.dimension==$scope.item._id;}).length>0;});
+                    }
+                );
+            }
         }else{
             $scope.item = {};
         }

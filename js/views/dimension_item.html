@@ -308,6 +308,7 @@
                 </tbody>
             </table>
             <br />
+
             <h5>
                 Levels
             </h5>
@@ -345,6 +346,28 @@
                             <p class="mb-1" ng-repeat="type in lvl.typizations"><span ng-if="type.namespace!==undefined && type.namespace!==''">[{{type.namespace}}]</span> - {{type.nameRU}}</p>
                         </td>
                    </tr>
+                </tbody>
+            </table>
+
+            <br />
+
+            <h5>
+                Linked Facts
+            </h5>
+            <table class="table table-hover">
+                <thead>
+                    <th>Name</th>
+                    <th>Role</th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="fact in facts">
+                        <td>
+                            <a ng-href="/fct/{{fact._id}}/view">{{fact.nameRU}}<a>
+                        </td>
+                        <td>
+                            <p ng-repeat="dim in fact.dimensions" ng-if="dim.dimension===item._id">{{dim.roleNameRU}}</p>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             

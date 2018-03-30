@@ -38,40 +38,44 @@
     <div class="container">
         <span ng-repeat="(ns, ns_dimensions) in dimensions._items | groupBy : 'namespace'">
             <h2 ng-if="ns!=='undefined'">{{ns}}</h2>
-            <h2 ng-if="ns==='undefined'">Common</h2>
+            <h2 ng-if="ns==='undefined'">Общие измерения</h2>
 
-            <div ng-repeat="dimension in ns_dimensions | orderBy : ['cluster', 'nameRU']" class="row card form-group">
-                <div class="card-header">
-                    <h3 ng-if="dimension.namespace!==undefined && dimension.namespace!==''">{{dimension.namespace}}</h3>
-                    <h4><span ng-if="dimension.cluster!==undefined">[{{(clusters._items | filter : {'_id' : dimension.cluster})[0].nameRU}}] / </span>{{dimension.nameRU}}</h4>
-                    <p><span ng-if="dimension.cluster!==undefined">[{{(clusters._items | filter : {'_id' : dimension.cluster})[0].nameEN}}] / </span>{{dimension.nameEN}}</p>
-                </div>
-                <div class="card-body">
-                    <p class="mb-1">{{dimension.definition}}</p>
-                    <br />
-                    <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" ng-repeat="level in dimension.levels | orderBy : 'level'">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">{{level.level}} - {{level.levelNameRU}}</h5>
-                                <small class="text-muted">{{level.levelNameEN}}</small>
-                            </div>
-                            <p class="mb-1">{{level.definition}}</p>
-                            
-                            <br ng-if="level.typizations!==undefined" />
-                            <h6 ng-if="level.typizations!==undefined">Типизации уровня</h6>
-                            <ul ng-if="level.typizations!==undefined">
-                                <li ng-repeat="type in level.typizations"><span ng-if="type.namespace!==undefined">[{{type.namespace}}]</span> {{type.nameRU}}</li>
-                            </ul>
-                        </a>
+            <span ng-repeat="(clusterId, cl_dimensions) in ns_dimensions | groupBy : 'cluster'">
+                <h2 ng-if="clusterId!=='undefined'">{{(clusters._items | filter : {'_id' : clusterId})[0].nameRU}}</h2>
+                <h2 ng-if="clusterId==='undefined'">Вне кластеров</h2>
+
+                <div ng-repeat="dimension in cl_dimensions | orderBy : ['cluster', 'nameRU']" class="row card form-group">
+                    <div class="card-header">
+                        <h4>{{dimension.nameRU}}</h4>
+                        <p>{{dimension.nameEN}}</p>
                     </div>
+                    <div class="card-body">
+                        <p class="mb-1">{{dimension.definition}}</p>
+                        <br />
+                        <div class="list-group">
+                            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" ng-repeat="level in dimension.levels | orderBy : 'level'">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">{{level.level}} - {{level.levelNameRU}}</h5>
+                                    <small class="text-muted">{{level.levelNameEN}}</small>
+                                </div>
+                                <p class="mb-1">{{level.definition}}</p>
+                                
+                                <br ng-if="level.typizations!==undefined" />
+                                <h6 ng-if="level.typizations!==undefined">Типизации уровня</h6>
+                                <ul ng-if="level.typizations!==undefined">
+                                    <li ng-repeat="type in level.typizations"><span ng-if="type.namespace!==undefined">[{{type.namespace}}]</span> {{type.nameRU}}</li>
+                                </ul>
+                            </a>
+                        </div>
 
-                    <br />
-                    <p class="mb-1"><a class="btn btn-secondary col-2" ng-href="/dim/{{dimension._id}}/view">View</a></p>
-                    <p class="mb-1"><a class="btn btn-info col-2" ng-href="/ld/dim/{{dimension._id}}">Logical Diagram</a></p>
-                    <p class="mb-1"><a class="btn btn-primary col-2" ng-href="/dim/{{dimension._id}}/edit">Edit</a></p>
-                    <p class="mb-1"><button type="button" class="btn btn-danger col-2" ng-click="deleteItem(dimension)">Delete</button></p>
+                        <br />
+                        <p class="mb-1"><a class="btn btn-secondary col-2" ng-href="/dim/{{dimension._id}}/view">View</a></p>
+                        <p class="mb-1"><a class="btn btn-info col-2" ng-href="/ld/dim/{{dimension._id}}">Logical Diagram</a></p>
+                        <p class="mb-1"><a class="btn btn-primary col-2" ng-href="/dim/{{dimension._id}}/edit">Edit</a></p>
+                        <p class="mb-1"><button type="button" class="btn btn-danger col-2" ng-click="deleteItem(dimension)">Delete</button></p>
+                    </div>
                 </div>
-            </div>
+            </span>
         </span>
     </div>
 

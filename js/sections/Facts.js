@@ -8,7 +8,7 @@ mainApp.config(function($routeProvider, $locationProvider) {
             templateUrl : '/js/views/fact_item.html',
             controller  : 'FactItemController'
         })
-        .when("/fct/:id", {
+        .when("/fct/:id/:action", {
             templateUrl : '/js/views/fact_item.html',
             controller  : 'FactItemController'
         });
@@ -35,6 +35,8 @@ mainApp.controller('FactsController', function($scope, $route, $routeParams, $lo
 mainApp.controller('FactItemController', function($scope, $route, $routeParams, $location, $rootScope, APIResources, ModelService) {
     $rootScope.module = "fct";
 
+    $scope._action = $routeParams.action;
+
     $scope.refresh = function(){
         if($routeParams["id"]!==undefined){
             $scope.item = APIResources.facts.get({"id" : $routeParams["id"]});
@@ -57,7 +59,7 @@ mainApp.controller('FactItemController', function($scope, $route, $routeParams, 
         }
         
         $scope.refresh();
-        $location.path("/fcts");
+        $location.path("/fcts/" + id + "/view");
     };
 
     $scope.addSubItem = function(item, subItemsName){

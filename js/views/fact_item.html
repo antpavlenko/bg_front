@@ -20,7 +20,17 @@
             <h3>{{item.nameRU}}</h3>
             <p>{{item.nameEN}}</p>
         </div>
-        <div class="card-body">
+        <div class="card-body" ng-if="_action=='edit'">
+
+                <h5>Stratification</h5>
+
+                <div class="form-group">
+                    <label for="nameRU">Namespace</label>
+                    <select class="form-control" id="namespace" ng-model="item.namespace">
+                        <option ng-repeat="ns in namespaceList" ng-value="ns.nameRU">{{ns.nameRU}}</option>
+                        <option value=""></option>
+                    </select>
+                </div>
 
                 <h5>General</h5>
 
@@ -67,7 +77,7 @@
                                     <td>
                                         <div class="form-group">
                                             <select class="form-control" id="type" ng-model="dim.dimension">
-                                                <option ng-repeat="dimension in dimensions._items" ng-value="dimension._id">{{dimension.nameRU}}</option>
+                                                <option ng-repeat="dimension in dimensions._items | orderBy: ['namespace', 'cluster', 'nameRU']" ng-value="dimension._id">{{dimension.nameRU}}</option>
                                             </select>
                                         </div>
                                     </td>

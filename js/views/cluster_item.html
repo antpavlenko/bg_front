@@ -70,13 +70,7 @@
                 <tbody>
                     <tr ng-repeat="dim in dimensions._items" ng-if="dim.cluster==item._id">
                         <td>
-                            {{dim.nameRU}}
-                        </td>
-                        <td>
-                            <p class="mb-1"><a class="btn btn-primary col-12" ng-href="/dim/{{dim._id}}/view">View</a></p>
-                        </td>
-                        <td>
-                            <p class="mb-1"><a class="btn btn-info col-12" ng-href="/ld/dim/{{dim._id}}">Logical Diagram</a></p>
+                            <a ng-href="/dim/{{dim._id}}/view">{{dim.nameRU}}</a>
                         </td>
                     </tr>
                 </tbody>
