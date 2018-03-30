@@ -46,7 +46,7 @@ mainApp.controller('ClusterItemController', function($scope, $route, $routeParam
         if($routeParams["id"]!==undefined){
             $scope.item = APIResources.clusters.get({"id" : $routeParams["id"]});
             if($scope._action=='view'){
-                $scope.dimensions = APIResources.dimensions.$promise.query();
+                $scope.dimensions = APIResources.dimensions.query();
             }
         }else{
             $scope.item = {};
