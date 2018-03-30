@@ -23,12 +23,12 @@
     <div class="container">
 
         <div ng-repeat="cluster in clusters._items" class="row card form-group">
-            <a class="card-header" ng-href="/cls/view/{{cluster._id}}">
+            <div class="card-header">
                 <h3>{{cluster.nameRU}}</h3>
                 <p>{{cluster.nameEN}}</p>
-            </a>
+            </div>
             <div class="card-body">
-                <p class="mb-1"><a class="btn btn-secondary col-2" ng-href="/cls/view/{{cluster._id}}">View</a></p>
+                <p class="mb-1"><a class="btn btn-secondary col-2" ng-href="/cls/{{cluster._id}}/view">View</a></p>
                 <p class="mb-1"><a class="btn btn-primary col-2" ng-href="/cls/{{cluster._id}}">Edit</a></p>
                 <p class="mb-1"><button type="button" class="btn btn-danger col-2" ng-click="deleteItem(cluster)">Delete</button></p>
             </div>
