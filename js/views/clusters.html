@@ -23,10 +23,10 @@
     <div class="container">
 
         <div ng-repeat="cluster in clusters._items" class="row card form-group">
-            <div class="card-header">
+            <a class="card-header" ng-href="/cls/view/{{cluster._id}}">
                 <h3>{{cluster.nameRU}}</h3>
                 <p>{{cluster.nameEN}}</p>
-            </div>
+            </a>
             <div class="card-body">
                 <p class="mb-1"><a class="btn btn-secondary col-2" ng-href="/cls/view/{{cluster._id}}">View</a></p>
                 <p class="mb-1"><a class="btn btn-primary col-2" ng-href="/cls/{{cluster._id}}">Edit</a></p>
