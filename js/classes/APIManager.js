@@ -1,5 +1,5 @@
 var $API = {
-	hostname: "http://127.0.0.1:5000",	
+	hostname: "http://35.188.121.31:5000",	
 	returnResource : function(eveResource, objectName){
 		var url = this.hostname + "/api/" + objectName + "/:id";
 		var res = eveResource(url, {id: '@id', page: '@page'}, 
