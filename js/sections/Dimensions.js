@@ -8,7 +8,7 @@ mainApp.config(function($routeProvider, $locationProvider) {
             templateUrl : '/js/views/dimension_item.html',
             controller  : 'DimensionItemController'
         })
-        .when("/dim/:id", {
+        .when("/dim/:id/:action", {
             templateUrl : '/js/views/dimension_item.html',
             controller  : 'DimensionItemController'
         });
@@ -34,6 +34,8 @@ mainApp.controller('DimensionsController', function($scope, $route, $routeParams
 
 mainApp.controller('DimensionItemController', function($scope, $route, $routeParams, $location, $rootScope, APIResources, ModelService) {
     $rootScope.module = "dim";
+
+    $scope._action = $routeParams.action;
     
     $scope.refresh = function(){
         if($routeParams["id"]!==undefined){
@@ -56,7 +58,7 @@ mainApp.controller('DimensionItemController', function($scope, $route, $routePar
         }
         
         $scope.refresh();
-        $location.path("/dims");
+        $location.path("/dims/" + id + "/view");
     };
 
     $scope.addSubItem = function(item, subItemsName){
