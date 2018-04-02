@@ -346,7 +346,7 @@
                                 <p class="mb-1" ng-repeat="scenario in lvl.scenarios | orderBy : 'scenarioId'">{{scenario.scenarioNm}}</p>
                             </td>
                             <td>
-                                <p class="mb-1" ng-repeat="type in lvl.typizations"><span ng-if="type.namespace!==undefined && type.namespace!==''">[{{type.namespace}}]</span> - {{type.nameRU}}</p>
+                                <p class="mb-1" ng-repeat="type in lvl.typizations"><span ng-if="type.namespace!==undefined && type.namespace!==''">[{{type.namespace}}] - </span>{{type.nameRU}}</p>
                             </td>
                     </tr>
                     </tbody>
