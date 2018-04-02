@@ -19,8 +19,14 @@
     </div>
 
     <br />
+
+    <div ng-if="facts._items===undefined" class="container">
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+        </div>
+    </div>
     
-    <div class="container">
+    <div ng-if="facts._items!==undefined" class="container">
         <span ng-repeat="(ns, ns_facts) in facts._items | groupBy : 'namespace'">
             <h2 ng-if="ns!=='undefined'">{{ns}}</h2>
             <h2 ng-if="ns==='undefined'">Общие факты</h2>
