@@ -263,7 +263,7 @@
                         <td ng-if="item.cluster!==undefined">
                             <h6>Cluster</h6>
                         </td>
-                        <td>
+                        <td ng-if="item.cluster!==undefined">
                             <a ng-href="/cls/{{item.cluster}}/view">{{cluster.nameRU}}</a>
                         </td>
                     </tr>
