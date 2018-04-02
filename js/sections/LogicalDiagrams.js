@@ -39,6 +39,7 @@ mainApp.controller('FactsLogicalDiagramController', function($scope, $route, $ro
                     model: graph
                 });
 
+                var wraptext;
 
                 var uml = joint.shapes.uml;
 
@@ -114,10 +115,14 @@ mainApp.controller('FactsLogicalDiagramController', function($scope, $route, $ro
                     }
                 };
 
+                wraptext = joint.util.breakText('[ФАКТ] ' + Fact.nameRU, {
+                    width: factWidth
+                });
+
                 entities["fact"] = new uml.Class({
                     position: { x: factX  , y: factY },
                     size: { width: factWidth, height: factHeight },
-                    name: '[ФАКТ] ' + Fact.nameRU,
+                    name: wraptext,
                     attributes: [],
                     methods: [],
                     attrs: factAttrs,
