@@ -14,8 +14,6 @@ mainApp.config(function($routeProvider, $locationProvider) {
 mainApp.controller('FactsLogicalDiagramController', function($scope, $route, $routeParams, $location, $rootScope, APIResources, ModelService) {
     $rootScope.module = "ld";
 
-    $scope.heightStyle = {"height" : "100px"};
-
     $scope.obj = "fct";
     $scope.id = $routeParams.id;
 
@@ -53,8 +51,6 @@ mainApp.controller('FactsLogicalDiagramController', function($scope, $route, $ro
 
                 var factX = 20;
                 var factY = 20;
-
-                var heightWidth = 0;
 
                 var factAttrs = {
                     '.uml-class-name-rect': {
@@ -129,8 +125,6 @@ mainApp.controller('FactsLogicalDiagramController', function($scope, $route, $ro
                     entityType: 'Fact'
                 });
 
-                heightWidth = factY + factHeight;
-
                 var dimensionIds = {};
 
                 for(var i=0; i<Fact.dimensions.length; i++){
@@ -160,7 +154,6 @@ mainApp.controller('FactsLogicalDiagramController', function($scope, $route, $ro
 
                         dimY = dimY + factHeight + padding;
 
-                        heightWidth = dimY + factHeight + padding;
                     }
                 }
 
@@ -201,7 +194,6 @@ mainApp.controller('FactsLogicalDiagramController', function($scope, $route, $ro
                 );
                 */
 
-                $scope.heightStyle["height"] = heightWidth + 'px';
             }
         );
     };
@@ -212,8 +204,6 @@ mainApp.controller('FactsLogicalDiagramController', function($scope, $route, $ro
 
 mainApp.controller('DimensionsLogicalDiagramController', function($scope, $route, $routeParams, $location, $rootScope, APIResources, ModelService) {
     $rootScope.module = "ld";
-
-    $scope.heightStyle = {"height" : "100px"};
 
     $scope.obj = "dim";
     $scope.id = $routeParams.id;
@@ -238,8 +228,6 @@ mainApp.controller('DimensionsLogicalDiagramController', function($scope, $route
                     gridSize: 1,
                     model: graph
                 });
-
-                var heightWidth = 0;
 
                 var uml = joint.shapes.uml;
 
@@ -358,7 +346,6 @@ mainApp.controller('DimensionsLogicalDiagramController', function($scope, $route
                         entityType: 'Level'
                     });
 
-                    heightWidth = dimY + dimHeight;
                 }else{
                     for(var i=0;i<Dimension.levels.length;i++){
                         var lvl = Dimension.levels[i];
@@ -372,8 +359,6 @@ mainApp.controller('DimensionsLogicalDiagramController', function($scope, $route
                             entityId : Dimension._id + "_" + lvl.level,
                             entityType: 'Level'
                         });
-
-                        heightWidth = dimY + (dimHeight + padding) * lvl.level * 2 + (dimHeight + padding);
                     }
                 }
 
@@ -479,7 +464,6 @@ mainApp.controller('DimensionsLogicalDiagramController', function($scope, $route
 
                 _.each(relations, function(r) { graph.addCell(r); });
 
-                $scope.heightStyle["height"] = heightWidth + 'px';
             }
         );
     };
