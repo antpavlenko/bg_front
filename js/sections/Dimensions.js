@@ -18,19 +18,10 @@ mainApp.controller('DimensionsController', function($scope, $route, $routeParams
     $rootScope.module = "dim";
 
     $scope.refresh = function(){
-        $scope.loading = true;
 
         $scope.dimensions = APIResources.dimensions.query();
         $scope.clusters = APIResources.clusters.query();
 
-        var promises = [$scope.dimensions.$promise, $scope.clusters.$promise];
-
-        Promise.all(promises).then(
-            function(){
-                $scope.loading = false;
-                console.log($scope.loading);
-            }
-        );
     };
     
     $scope.deleteItem = function(item){
