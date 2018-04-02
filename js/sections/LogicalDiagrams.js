@@ -480,6 +480,8 @@ mainApp.controller('DimensionsLogicalDiagramController', function($scope, $route
                 _.each(relations, function(r) { graph.addCell(r); });
 
                 $scope.heightStyle["height"] = heightWidth + 'px';
+
+                console.log($scope.heightStyle);
             }
         );
     };
