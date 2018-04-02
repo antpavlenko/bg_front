@@ -52,6 +52,8 @@ mainApp.controller('FactsLogicalDiagramController', function($scope, $route, $ro
                 var factX = 20;
                 var factY = 20;
 
+                var heightWidth = 0;
+
                 var factAttrs = {
                     '.uml-class-name-rect': {
                         fill: '#138496',
@@ -125,6 +127,8 @@ mainApp.controller('FactsLogicalDiagramController', function($scope, $route, $ro
                     entityType: 'Fact'
                 });
 
+                heightWidth = factY + factHeight;
+
                 var dimensionIds = {};
 
                 for(var i=0; i<Fact.dimensions.length; i++){
@@ -153,6 +157,8 @@ mainApp.controller('FactsLogicalDiagramController', function($scope, $route, $ro
                         });
 
                         dimY = dimY + factHeight + padding;
+
+                        heightWidth = dimY;
                     }
                 }
 
@@ -192,6 +198,8 @@ mainApp.controller('FactsLogicalDiagramController', function($scope, $route, $ro
                     }
                 );
                 */
+
+                $scope.heightWidth = "height: " + heightWidth + ";";
             }
         );
     };
@@ -227,6 +235,7 @@ mainApp.controller('DimensionsLogicalDiagramController', function($scope, $route
                     model: graph
                 });
 
+                var heightWidth = 0;
 
                 var uml = joint.shapes.uml;
 
@@ -344,6 +353,8 @@ mainApp.controller('DimensionsLogicalDiagramController', function($scope, $route
                         entityId : Dimension._id,
                         entityType: 'Level'
                     });
+
+                    heightWidth = dimY + dimHeight;
                 }else{
                     for(var i=0;i<Dimension.levels.length;i++){
                         var lvl = Dimension.levels[i];
@@ -357,6 +368,8 @@ mainApp.controller('DimensionsLogicalDiagramController', function($scope, $route
                             entityId : Dimension._id + "_" + lvl.level,
                             entityType: 'Level'
                         });
+
+                        heightWidth = dimY + (dimHeight + padding) * lvl.level * 2;
                     }
                 }
 
@@ -462,6 +475,7 @@ mainApp.controller('DimensionsLogicalDiagramController', function($scope, $route
 
                 _.each(relations, function(r) { graph.addCell(r); });
 
+                $scope.heightWidth = "height: " + heightWidth + ";";
             }
         );
     };
