@@ -365,7 +365,7 @@ mainApp.controller('DimensionsLogicalDiagramController', function($scope, $route
                     for(var i=0;i<Dimension.levels.length;i++){
                         var lvl = Dimension.levels[i];
 
-                        wraptext = joint.util.breakText("[" + Dimension.nameRU + "]" + " - " + lvl.levelNameRU, {
+                        wraptext = joint.util.breakText(Dimension.nameRU + " // " + lvl.levelNameRU, {
                             width: dimWidth
                         });
 
@@ -399,7 +399,7 @@ mainApp.controller('DimensionsLogicalDiagramController', function($scope, $route
                                 relations.unshift(rel);
                             }else{
 
-                                wraptext = joint.util.breakText("[" + Dimension.nameRU + "]" + " - Иерархия", {
+                                wraptext = joint.util.breakText( Dimension.nameRU + " // " + lvl.levelNameRU + " - Иерархия", {
                                     width: dimWidth
                                 });
 
@@ -414,7 +414,7 @@ mainApp.controller('DimensionsLogicalDiagramController', function($scope, $route
                                     entityType: 'Hierarchy'
                                 });
 
-                                wraptext = joint.util.breakText("[" + Dimension.nameRU + "]" + " - Тип сценария иерархии", {
+                                wraptext = joint.util.breakText(Dimension.nameRU + " // " + lvl.levelNameRU + " - Тип сценария иерархии", {
                                     width: dimWidth
                                 });
 
