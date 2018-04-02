@@ -14,6 +14,8 @@ mainApp.config(function($routeProvider, $locationProvider) {
 mainApp.controller('FactsLogicalDiagramController', function($scope, $route, $routeParams, $location, $rootScope, APIResources, ModelService) {
     $rootScope.module = "ld";
 
+    $scope.heightStyle = '{height: 100px;}';
+
     $scope.obj = "fct";
     $scope.id = $routeParams.id;
 
@@ -199,7 +201,7 @@ mainApp.controller('FactsLogicalDiagramController', function($scope, $route, $ro
                 );
                 */
 
-                $scope.heightStyle = "height: " + heightWidth + ";";
+                $scope.heightStyle = '{height: ' + heightWidth + 'px;}';
             }
         );
     };
@@ -210,6 +212,8 @@ mainApp.controller('FactsLogicalDiagramController', function($scope, $route, $ro
 
 mainApp.controller('DimensionsLogicalDiagramController', function($scope, $route, $routeParams, $location, $rootScope, APIResources, ModelService) {
     $rootScope.module = "ld";
+
+    $scope.heightStyle = '{height: 100px;}';
 
     $scope.obj = "dim";
     $scope.id = $routeParams.id;
@@ -475,7 +479,7 @@ mainApp.controller('DimensionsLogicalDiagramController', function($scope, $route
 
                 _.each(relations, function(r) { graph.addCell(r); });
 
-                $scope.heightStyle = "height: " + heightWidth + ";";
+                $scope.heightStyle = '{height: ' + heightWidth + 'px;}';
             }
         );
     };
