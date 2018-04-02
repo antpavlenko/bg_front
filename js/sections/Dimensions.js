@@ -19,8 +19,11 @@ mainApp.controller('DimensionsController', function($scope, $route, $routeParams
 
     $scope.loading = true;
 
+    var bar=new RadialProgress(document.getElementById("progressBar"), {});
+
     $scope.refresh = function(){
         $scope.loading = true;
+
         $scope.dimensions = APIResources.dimensions.query();
         $scope.clusters = APIResources.clusters.query();
 
@@ -29,6 +32,7 @@ mainApp.controller('DimensionsController', function($scope, $route, $routeParams
         Promise.all(promises).then(
             function(){
                 $scope.loading = false;
+                console.log($scope.loading);
             }
         );
     };
