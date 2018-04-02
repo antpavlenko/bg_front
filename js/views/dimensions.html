@@ -26,7 +26,7 @@
         </div>
     </div>
     
-    <div ng-if="loading==false" class="container">
+    <div ng-if="loading==true" class="container">
         <span ng-repeat="(ns, ns_dimensions) in dimensions._items | groupBy : 'namespace'">
             <h2 ng-if="ns!=='undefined'">{{ns}}</h2>
             <h2 ng-if="ns==='undefined'">Общие измерения</h2>
