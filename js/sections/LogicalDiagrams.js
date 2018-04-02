@@ -160,7 +160,7 @@ mainApp.controller('FactsLogicalDiagramController', function($scope, $route, $ro
 
                         dimY = dimY + factHeight + padding;
 
-                        heightWidth = dimY;
+                        heightWidth = dimY + factHeight + padding;
                     }
                 }
 
@@ -373,7 +373,7 @@ mainApp.controller('DimensionsLogicalDiagramController', function($scope, $route
                             entityType: 'Level'
                         });
 
-                        heightWidth = dimY + (dimHeight + padding) * lvl.level * 2;
+                        heightWidth = dimY + (dimHeight + padding) * lvl.level * 2 + (dimHeight + padding);
                     }
                 }
 
