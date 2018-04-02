@@ -199,7 +199,7 @@ mainApp.controller('FactsLogicalDiagramController', function($scope, $route, $ro
                 );
                 */
 
-                $scope.heightWidth = "height: " + heightWidth + ";";
+                $scope.heightStyle = "height: " + heightWidth + ";";
             }
         );
     };
@@ -475,7 +475,7 @@ mainApp.controller('DimensionsLogicalDiagramController', function($scope, $route
 
                 _.each(relations, function(r) { graph.addCell(r); });
 
-                $scope.heightWidth = "height: " + heightWidth + ";";
+                $scope.heightStyle = "height: " + heightWidth + ";";
             }
         );
     };
