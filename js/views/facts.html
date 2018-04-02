@@ -28,8 +28,8 @@
     
     <div ng-if="facts._items!==undefined" class="container">
         <span ng-repeat="(ns, ns_facts) in facts._items | groupBy : 'namespace'">
-            <h2 ng-if="ns!=='undefined'">{{ns}}</h2>
-            <h2 ng-if="ns==='undefined'">Общие факты</h2>
+            <h2 ng-if="ns!=='undefined' && ns!==''">{{ns}}</h2>
+            <h2 ng-if="ns==='undefined' || ns===''">Общие факты</h2>
             
             <span ng-repeat="(tp, tp_facts) in ns_facts | groupBy : 'type'">
                 <h3>{{tp}}</h3>

@@ -28,8 +28,8 @@
     
     <div ng-if="dimensions._items!==undefined" class="container">
         <span ng-repeat="(ns, ns_dimensions) in dimensions._items | groupBy : 'namespace'">
-            <h2 ng-if="ns!=='undefined'">{{ns}}</h2>
-            <h2 ng-if="ns==='undefined'">Общие измерения</h2>
+            <h2 ng-if="ns!=='undefined' && ns!==''">{{ns}}</h2>
+            <h2 ng-if="ns==='undefined' || ns===''">Общие измерения</h2>
 
             <span ng-repeat="(clusterId, cl_dimensions) in ns_dimensions | groupBy : 'cluster'">
                 <h3 ng-if="clusterId!=='undefined'">{{(clusters._items | filter : {'_id' : clusterId})[0].nameRU}}</h3>
