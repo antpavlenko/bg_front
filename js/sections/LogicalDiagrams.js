@@ -146,10 +146,14 @@ mainApp.controller('FactsLogicalDiagramController', function($scope, $route, $ro
                     var dim = dimensions._items.filter(function(d){return d._id==dimId;})[0];
                     
                     if(dim!==undefined){
+                        wraptext = joint.util.breakText('[ИЗМЕРЕНИЕ] ' + dim.nameRU, {
+                            width: factWidth
+                        });
+
                         entities[dimId] = new uml.Class({
                             position: { x: dimX  , y: dimY },
                             size: { width: factWidth, height: factHeight },
-                            name: '[ИЗМЕРЕНИЕ] ' + dim.nameRU,
+                            name: wraptext,
                             attributes: [],
                             methods: [],
                             attrs: dimAttrs,
@@ -246,6 +250,8 @@ mainApp.controller('DimensionsLogicalDiagramController', function($scope, $route
                 var dimX = 500;
                 var dimY = 20;
 
+                var wraptext;
+
                 var hierAttrs = {
                     '.uml-class-name-rect': {
                         fill: '#138496',
@@ -340,10 +346,14 @@ mainApp.controller('DimensionsLogicalDiagramController', function($scope, $route
                 };
 
                 if(Dimension.levels===undefined || Dimension.levels.length==0){
+                    wraptext = joint.util.breakText(Dimension.nameRU, {
+                        width: dimWidth
+                    });
+
                     entities["dim0"] = new uml.Class({
                         position: { x: dimX  , y: dimY },
                         size: { width: dimWidth, height: dimHeight },
-                        name: Dimension.nameRU,
+                        name: wraptext,
                         attributes: [],
                         methods: [],
                         attrs: dimAttrs,
@@ -354,10 +364,15 @@ mainApp.controller('DimensionsLogicalDiagramController', function($scope, $route
                 }else{
                     for(var i=0;i<Dimension.levels.length;i++){
                         var lvl = Dimension.levels[i];
+
+                        wraptext = joint.util.breakText("[" + Dimension.nameRU + "]" + " - " + lvl.levelNameRU, {
+                            width: dimWidth
+                        });
+
                         entities["dim" + lvl.level] = new uml.Class({
                             position: { x: dimX  , y: dimY + (dimHeight + padding) * lvl.level * 2 },
                             size: { width: dimWidth, height: dimHeight },
-                            name: "[" + Dimension.nameRU + "]" + " - " + lvl.levelNameRU,
+                            name: wraptext,
                             attributes: [],
                             methods: [],
                             attrs: dimAttrs,
@@ -384,11 +399,14 @@ mainApp.controller('DimensionsLogicalDiagramController', function($scope, $route
                                 relations.unshift(rel);
                             }else{
 
+                                wraptext = joint.util.breakText("[" + Dimension.nameRU + "]" + " - Иерархия", {
+                                    width: dimWidth
+                                });
 
                                 entities["dimh" + lvl.level] = new uml.Class({
                                     position: { x: dimX - dimWidth - padding  , y: dimY + (dimHeight + padding) * lvl.level * 2 },
                                     size: { width: dimWidth, height: dimHeight },
-                                    name: "[" + Dimension.nameRU + "]" + " - Иерархия",
+                                    name: wraptext,
                                     attributes: [],
                                     methods: [],
                                     attrs: hierAttrs,
@@ -396,10 +414,14 @@ mainApp.controller('DimensionsLogicalDiagramController', function($scope, $route
                                     entityType: 'Hierarchy'
                                 });
 
+                                wraptext = joint.util.breakText("[" + Dimension.nameRU + "]" + " - Тип сценария иерархии", {
+                                    width: dimWidth
+                                });
+
                                 entities["dimht" + lvl.level] = new uml.Class({
                                     position: { x: dimX - dimWidth - padding  , y: dimY + (dimHeight + padding) * lvl.level * 2 - (dimHeight + padding)},
                                     size: { width: dimWidth, height: dimHeight },
-                                    name: "[" + Dimension.nameRU + "]" + " - Тип сценария иерархии",
+                                    name: wraptext,
                                     attributes: [],
                                     methods: [],
                                     attrs: typeAttrs,
@@ -442,10 +464,14 @@ mainApp.controller('DimensionsLogicalDiagramController', function($scope, $route
                                         }
                                     }
 
+                                    wraptext = joint.util.breakText(tpName, {
+                                        width: dimWidth
+                                    });
+
                                     entities["dimt_" + tp.nameEN] = new uml.Class({
                                         position: { x: dimX + (dimWidth + padding) * (j+1)  , y: dimY + (dimHeight + padding) * lvl.level * 2 },
                                         size: { width: dimWidth, height: dimHeight },
-                                        name: tpName,
+                                        name: wraptext,
                                         attributes: [],
                                         methods: [],
                                         attrs: typeAttrs,
