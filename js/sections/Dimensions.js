@@ -17,8 +17,6 @@ mainApp.config(function($routeProvider, $locationProvider) {
 mainApp.controller('DimensionsController', function($scope, $route, $routeParams, $location, $rootScope, APIResources, ModelService) {
     $rootScope.module = "dim";
 
-    $scope.loading = true;
-
     $scope.refresh = function(){
         $scope.loading = true;
 
@@ -30,6 +28,7 @@ mainApp.controller('DimensionsController', function($scope, $route, $routeParams
         Promise.all(promises).then(
             function(){
                 $scope.loading = false;
+                console.log($scope.loading);
             }
         );
     };
