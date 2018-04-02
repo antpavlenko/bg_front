@@ -20,22 +20,11 @@
 
     <br />
 
-    <!--
-    <div class="row">
-        <h4>Cluster Filter</h4>
-    </div> 
-
-    <div class="row">
-        <div class="form-group col-4">
-            <select class="form-control" id="filterCluster" ng-model="filterCluster">
-                <option ng-repeat="cluster in clusters._items" ng-value="cluster.nameRU">{{cluster.nameRU}}</option>
-            </select>
-        </div>
+    <div ng-if="loading" class="container">
+        <div id="progressBar"></div>
     </div>
-    <br />
-    -->
     
-    <div class="container">
+    <div ng-if="loading==false" class="container">
         <span ng-repeat="(ns, ns_dimensions) in dimensions._items | groupBy : 'namespace'">
             <h2 ng-if="ns!=='undefined'">{{ns}}</h2>
             <h2 ng-if="ns==='undefined'">Общие измерения</h2>

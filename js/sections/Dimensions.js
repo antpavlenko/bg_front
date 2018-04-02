@@ -17,11 +17,20 @@ mainApp.config(function($routeProvider, $locationProvider) {
 mainApp.controller('DimensionsController', function($scope, $route, $routeParams, $location, $rootScope, APIResources, ModelService) {
     $rootScope.module = "dim";
 
-    $scope.refresh = function(){
+    $scope.loading = true;
 
+    $scope.refresh = function(){
+        $scope.loading = true;
         $scope.dimensions = APIResources.dimensions.query();
         $scope.clusters = APIResources.clusters.query();
 
+        var promises = [$scope.dimensions.$promise, $scope.clusters.$promise];
+
+        Promise.all(promises).then(
+            function(){
+                $scope.loading = false;
+            }
+        );
     };
     
     $scope.deleteItem = function(item){
